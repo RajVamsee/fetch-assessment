@@ -46,6 +46,8 @@ def points_calculator(receipt):
     amount = float(receipt.get("total","0"))
     if amount.is_integer():
         points += 50
+    
+    return points
 
 
 #API to return points for a receipt (GET)
@@ -56,7 +58,11 @@ def get_points(id):
 
     if id in receipts_details:
         #temporarily returning 20 points till I come up with logic for all the rules
-        return jsonify({"points": 20}), 200  
+        #return jsonify({"points": 20}), 200 
+
+        points = points_calculator(receipts_details[id]) #awarding points based on rules
+        return jsonify({"points": points}), 200
+    
     return jsonify({"error":"Receipt not found"}), 404
 
 #This is to run our receipt processor App
