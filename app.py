@@ -7,7 +7,7 @@ import re
 #Create a Flask application instance which will act as our server 
 app = Flask(__name__)
 
-#Our in-memory storage for receipts
+#Our in-memory storage for receipts (python dictionary for key value pairs)
 receipts_details = dict()
 
 #Defining the routes for our receipt processor
@@ -46,6 +46,15 @@ def points_calculator(receipt):
     amount = float(receipt.get("total","0"))
     if amount.is_integer():
         points += 50
+    
+    #Rule 3 : 25 points if the total is a multiple of 0.25.
+    if amount % 0.25 == 0:
+        points +=25
+    
+    #Rule 4 : 5 points for every two items on the receipt.
+    items = receipt.get("items", [])
+    two_item_count = (len(items) // 2)
+    points += (two_item_count * 5)
     
     return points
 
