@@ -83,7 +83,6 @@ def points_calculator(receipt):
     
     return points
 
-
 #API to return points for a receipt (GET)
 @app.route('/receipts/<id>/points', methods=['GET'])
 def get_points(id):
