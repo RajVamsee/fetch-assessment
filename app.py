@@ -1,8 +1,9 @@
 #import statements
 from flask import Flask 
-from flask import request, jsonify
+from flask import request, jsonify 
 import uuid #this is for generating unique ids for receipts
-import re
+import re #for regex patterns
+import math #for rounding up
 
 #Create a Flask application instance which will act as our server 
 app = Flask(__name__)
@@ -33,7 +34,7 @@ def receipt_processor():
     receipts_details[receipt_id] = receipt #Store the receipt in memory
     return jsonify({"id": receipt_id}), 200
 
-#function/method to write the logic to follow rules for awarding points for a particular receipt
+#function to write the logic to follow rules for awarding points for a particular receipt
 def points_calculator(receipt):
     points = 0
 
@@ -55,6 +56,30 @@ def points_calculator(receipt):
     items = receipt.get("items", [])
     two_item_count = (len(items) // 2)
     points += (two_item_count * 5)
+
+    """Rule 5 : If the trimmed length of the item description is a multiple of 3, 
+    multiply the price by 0.2 and round up to the nearest integer. 
+    The result is the number of points earned."""
+    for item in items:
+        trimmed = item.get("shortDescription","").strip() #trimming the whitespaces
+        price = float(item.get("price","0"))
+        if len(trimmed) % 3 == 0:
+            points += math.ceil(price * 0.2) #used ceil since we are asked to round "up"
+    
+    #Rule 6 : 6 points if the day in the purchase date is odd.
+    date = receipt.get("purchaseDate","")
+    if date: 
+        day = int(date.split("-")[-1]) #extract the day from YYYY-MM-DD format 
+        if day % 2 == 1: #if the day is odd
+            points += 6 
+    
+    #Rule 7 : 10 points if the time of purchase is after 2:00pm and before 4:00pm.
+    time = receipt.get("purchaseTime", "")
+    if time:
+        hr, min = map(int, time.split(":")) #we extract the hour and minute
+        if 14 <= hr <=15:   #allows 2:00pm to 3:59pm
+            if not (hr==14 and min==0): #excluding 2:00pm and only consider if it is 2:01pm
+                points += 10
     
     return points
 
