@@ -4,12 +4,22 @@ from flask import request, jsonify
 import uuid #this is for generating unique ids for receipts
 import re #for regex patterns
 import math #for rounding up
+from datetime import datetime
+from uuid import UUID
 
 #Create a Flask application instance which will act as our server 
 app = Flask(__name__)
 
 #Our in-memory storage for receipts (python dictionary for key value pairs)
 receipts_details = dict()
+
+#function to validate our unique id
+def validate_id(token):
+    try:
+        UUID(token, version=4)
+        return True
+    except ValueError:
+        return False
 
 #Defining the routes for our receipt processor
 #our home page on opening on any browser
@@ -28,13 +38,42 @@ def receipt_processor():
     receipt = request.get_json() #receive json receipt data
     
     if not receipt:
-        return jsonify({"error":"Invalid Receipt JSON"}), 400
+        return jsonify({"error":"The receipt is invalid."}), 400
     
     #validation for all required fields
     required = ["retailer","purchaseDate","purchaseTime","items","total"]
     missing = [item for item in required if item not in receipt]
     if missing:
-        return jsonify({"error":f"Missing : {', '.join(missing)}"}), 400
+        return jsonify({"error":"The receipt is invalid."}), 400
+    
+    #validation for purchaseDate: YYYY-MM-DD
+    try:
+        datetime.strptime(receipt["purchaseDate"], "%Y-%m-%d")
+    except ValueError:
+        return jsonify({"error": "The receipt is invalid."}), 400
+    
+    #validation for purchaseTime: HH:MM (24hr format)
+    try:
+        datetime.strptime(receipt["purchaseTime"], "%H:%M")
+    except ValueError:
+        return jsonify({"error": "The receipt is invalid."}), 400
+    
+    #validation for total amount: 
+    if not re.match(r"^\d+\.\d{2}$", receipt["total"]):
+        return jsonify({"error": "The receipt is invalid."}), 400
+    
+    #validation for items:
+    if not isinstance(receipt["items"], list) or len(receipt["items"]) == 0:
+        return jsonify({"error": "The receipt is invalid."}), 400
+    
+    # Validation for every item in the item list:
+    for item in receipt["items"]:
+        if "shortDescription" not in item or "price" not in item:
+            return jsonify({"error": "The receipt is invalid."}), 400
+        if not isinstance(item["shortDescription"], str) or not item["shortDescription"].strip():
+            return jsonify({"error": "The receipt is invalid."}), 400
+        if not re.match(r"^\d+\.\d{2}$", item["price"]):
+            return jsonify({"error": "The receipt is invalid."}), 400
     
     receipt_id = str(uuid.uuid4()) #Generate a unique id
     receipts_details[receipt_id] = receipt #Store the receipt in memory
@@ -95,6 +134,9 @@ def get_points(id):
     """ Accepts receipt ID, 
     returns points earned for that receipt """
 
+    if not validate_id(id):  # Ensure valid UUID format
+        return jsonify({"error": "The receipt is invalid."}), 400
+
     if id in receipts_details:
         #temporarily returning 20 points till I come up with logic for all the rules
         #return jsonify({"points": 20}), 200 
@@ -102,7 +144,7 @@ def get_points(id):
         points = points_calculator(receipts_details[id]) #awarding points based on rules
         return jsonify({"points": points}), 200
     
-    return jsonify({"error":"Receipt not found"}), 404
+    return jsonify({"error":"No receipt found for that ID."}), 404
 
 #This is to run our receipt processor App
 if __name__ == '__main__':
