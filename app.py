@@ -17,7 +17,7 @@ receipts_details = dict()
 def home():
     return "Receipt Processor Application"
 
-#API to submit the receipt (POST)
+#API to submit and process the receipt (POST)
 @app.route('/receipts/process', methods=['POST'])
 def receipt_processor():
     """ accepts a json receipt, 
@@ -29,6 +29,12 @@ def receipt_processor():
     
     if not receipt:
         return jsonify({"error":"Invalid Receipt JSON"}), 400
+    
+    #validation for all required fields
+    required = ["retailer","purchaseDate","purchaseTime","items","total"]
+    missing = [item for item in required if item not in receipt]
+    if missing:
+        return jsonify({"error":f"Missing : {', '.join(missing)}"}), 400
     
     receipt_id = str(uuid.uuid4()) #Generate a unique id
     receipts_details[receipt_id] = receipt #Store the receipt in memory
@@ -70,7 +76,7 @@ def points_calculator(receipt):
     date = receipt.get("purchaseDate","")
     if date: 
         day = int(date.split("-")[-1]) #extract the day from YYYY-MM-DD format 
-        if day % 2 == 1: #if the day is odd
+        if day % 2 == 1: #checking the odd day condition
             points += 6 
     
     #Rule 7 : 10 points if the time of purchase is after 2:00pm and before 4:00pm.
