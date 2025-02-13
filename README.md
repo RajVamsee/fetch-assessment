@@ -52,12 +52,17 @@ These rules collectively define how many points should be awarded to a receipt:
 - **README.md** → Provides instructions on setup, installation, and running the project.
 - **env/** → Virtual environment folder.
 
+---
+
 **💾 Data Persistence**  
 This API **stores receipt data in-memory** and does **not persist data** after the application is stopped. Each time the server restarts, previous receipt submissions will be lost. We use a Python dictionary to store receipt information.
+
+---
 
 **📜 API Specification (api.yml)**  
 This repository follows the API specifications outlined in the provided `api.yml` file. The API definitions can be tested using tools like **Swagger UI** or **Postman**.
 
+---
 
 ## ⚙️ Setup & Installation
 
