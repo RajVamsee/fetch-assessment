@@ -104,14 +104,14 @@ docker run -p 5000:5000 fetch-receipt-processor
 ```
 The application should now be accessible at:
 
-http://127.0.0.1:5000/
-http://localhost:5000/
+- http://127.0.0.1:5000/
+- http://localhost:5000/
 
 ### 7️⃣ **API Endpoints & Usage**
 1️⃣ Process a Receipt
-Endpoint: POST /receipts/process
-Description: Submit a receipt in JSON format to process and store it.
-Sample Request:
+- Endpoint: POST /receipts/process
+- Description: Submit a receipt in JSON format to process and store it.
+- Sample Request:
 ```json
 {
   "retailer": "Target",
@@ -125,16 +125,16 @@ Sample Request:
   ]
 }
 ```
-Sample Response:
+- Sample Response:
 ```json
 {
   "id": "b835c81b-8b58-4bc5-94c3-1a2dd99c1cf4"
 }
 ```
 2️⃣ Get Points for a Receipt
-Endpoint: GET /receipts/{id}/points
-Description: Retrieve the total points awarded for a processed receipt.
-Sample Response:
+- Endpoint: GET /receipts/{id}/points
+- Description: Retrieve the total points awarded for a processed receipt.
+- Sample Response:
 ```json
 {
   "points": 28
@@ -150,10 +150,10 @@ Sample Response:
 | **500 Internal Server Error** | Server-side error |
 
 ### 9️⃣ **Project Validation**
-✔️ Fully implemented API endpoints
-✔️ Validations for input data & proper error handling
-✔️ Unit-tested API with 16 successful test cases
-✔️ Dockerized setup for easy deployment
+- ✔️ Fully implemented API endpoints
+- ✔️ Validations for input data & proper error handling
+- ✔️ Unit-tested API with 16 successful test cases
+- ✔️ Dockerized setup for easy deployment
 
 
 
