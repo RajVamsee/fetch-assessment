@@ -137,8 +137,8 @@ To check if Python is installed, run:
 ```Python
 python --version
 ```
-If Python is not installed, download and install it from the official Python website: 
-👉 Download : https://www.python.org/downloads/
+- If Python is not installed, download and install it from the official Python website: 
+- 👉 Download : https://www.python.org/downloads/
 
 
 ### 1️⃣ **Clone the Repository**
