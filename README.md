@@ -48,6 +48,28 @@ Run the following command to **clone the project** to your local system:
 ```sh
 git clone https://github.com/RajVamsee/fetch-assessment.git
 cd FETCH-ASSESSMENT
+```
+
+### 2️⃣ **Set Up Virtual Environment (Optional but Recommended)**
+
+It is recommended to use a virtual environment to manage dependencies.
+
+#### **For Windows:**
+```sh
+python -m venv env
+env\Scripts\activate
+```
+#### **For Mac/Linux:**
+```sh
+python3 -m venv env
+source env/bin/activate
+```
+To deactivate the virtual environment at any time, use:
+```sh
+deactivate
+```
+
+
 
 
 
