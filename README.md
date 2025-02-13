@@ -64,6 +64,63 @@ This repository follows the API specifications outlined in the provided `api.yml
 
 ---
 
+**🧪 Testing the API with Postman**
+To test the API using Postman:
+1. Open **Postman** and create a new request.
+2. **For Processing Receipts**:
+   - Set the method to `POST`
+   - Use the endpoint: `http://localhost:5000/receipts/process`
+   - Go to the **Body** tab, select **raw**, and choose **JSON format**.
+   - Paste a sample receipt JSON and send the request.
+3. **For Retrieving Points**:
+   - Set the method to `GET`
+   - Use the endpoint: `http://localhost:5000/receipts/{id}/points`
+   - Replace `{id}` with a valid receipt ID returned from the previous request.
+
+- Sample JSON API for testing :
+```json
+{
+  "retailer": "Target",
+  "purchaseDate": "2022-01-01",
+  "purchaseTime": "13:01",
+  "items": [
+    {
+      "shortDescription": "Mountain Dew 12PK",
+      "price": "6.49"
+    },{
+      "shortDescription": "Emils Cheese Pizza",
+      "price": "12.25"
+    },{
+      "shortDescription": "Knorr Creamy Chicken",
+      "price": "1.26"
+    },{
+      "shortDescription": "Doritos Nacho Cheese",
+      "price": "3.35"
+    },{
+      "shortDescription": "   Klarbrunn 12-PK 12 FL OZ  ",
+      "price": "12.00"
+    }
+  ],
+  "total": "35.35"
+}
+```
+
+- Expected points : 28 
+
+Total Points: 28
+Breakdown:
+     6 points - retailer name has 6 characters
+    10 points - 5 items (2 pairs @ 5 points each)
+     3 Points - "Emils Cheese Pizza" is 18 characters (a multiple of 3)
+                item price of 12.25 * 0.2 = 2.45, rounded up is 3 points
+     3 Points - "Klarbrunn 12-PK 12 FL OZ" is 24 characters (a multiple of 3)
+                item price of 12.00 * 0.2 = 2.4, rounded up is 3 points
+     6 points - purchase day is odd
+  + ---------
+  = 28 points
+
+---
+
 ## ⚙️ Setup & Installation
 
 ### 1️⃣ **Clone the Repository**
