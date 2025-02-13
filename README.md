@@ -62,6 +62,8 @@ This API **stores receipt data in-memory** and does **not persist data** after t
 **📜 API Specification (api.yml)**  
 This repository follows the API specifications outlined in the provided `api.yml` file. The API definitions can be tested using tools like **Swagger UI** or **Postman**.
 
+- link to the fetch receipt processor exercise : https://github.com/fetch-rewards/receipt-processor-challenge
+
 ---
 
 **🧪 Testing the API with Postman**
@@ -107,6 +109,7 @@ To test the API using Postman:
 
 - Expected points : 28 
 
+```text
 Total Points: 28
 Breakdown:
      6 points - retailer name has 6 characters
@@ -118,6 +121,7 @@ Breakdown:
      6 points - purchase day is odd
   + ---------
   = 28 points
+```
 
 ---
 
