@@ -68,6 +68,103 @@ To deactivate the virtual environment at any time, use:
 ```sh
 deactivate
 ```
+### 3️⃣ **Install dependencies**
+
+Ensure you have Python 3.9+ installed. Then, install the required dependencies using:
+```sh
+pip install -r requirements.txt
+```
+### 4️⃣ **Run the Application Locally**
+To start the Flask application locally, run:
+```sh
+python app.py
+```
+The application will start on http://127.0.0.1:5000/ or http://localhost:5000/.
+
+### 5️⃣ **Run Tests**
+  
+To verify the API and its functionalities, run the test suite using:
+```sh
+pytest test_app.py
+```
+If all test cases pass, you will see an output indicating 16 passed test cases.
+
+### 6️⃣ **Run the Application using Docker**
+To containerize and run the application using Docker, follow these steps:
+
+Step 1 : Build the Docker Image
+Run the following command to create a Docker image:
+```sh
+docker build -t fetch-receipt-processor .
+```
+Step 2 : Run the Docker Container
+Once the image is built, start a container using:
+```sh
+docker run -p 5000:5000 fetch-receipt-processor
+```
+The application should now be accessible at:
+
+http://127.0.0.1:5000/
+http://localhost:5000/
+
+### 7️⃣ **API Endpoints & Usage**
+1️⃣ Process a Receipt
+Endpoint: POST /receipts/process
+Description: Submit a receipt in JSON format to process and store it.
+Sample Request:
+```json
+{
+  "retailer": "Target",
+  "purchaseDate": "2022-01-01",
+  "purchaseTime": "13:01",
+  "total": "35.35",
+  "items": [
+    { "shortDescription": "Mountain Dew 12PK", "price": "6.49" },
+    { "shortDescription": "Emils Cheese Pizza", "price": "12.25" },
+    { "shortDescription": "Knorr Creamy Chicken", "price": "1.26" }
+  ]
+}
+```
+Sample Response:
+```json
+{
+  "id": "b835c81b-8b58-4bc5-94c3-1a2dd99c1cf4"
+}
+```
+2️⃣ Get Points for a Receipt
+Endpoint: GET /receipts/{id}/points
+Description: Retrieve the total points awarded for a processed receipt.
+Sample Response:
+```json
+{
+  "points": 28
+}
+```
+### 8️⃣ **Expected Responses & Errors** 
+
+| Status Code | Description                        |
+|------------|------------------------------------|
+| **200 OK** | Successful request                |
+| **400 Bad Request** | Invalid input or missing fields |
+| **404 Not Found** | Receipt ID not found        |
+| **500 Internal Server Error** | Server-side error |
+
+### 9️⃣ **Project Validation**
+✔️ Fully implemented API endpoints
+✔️ Validations for input data & proper error handling
+✔️ Unit-tested API with 16 successful test cases
+✔️ Dockerized setup for easy deployment
+
+
+
+
+
+
+
+
+
+  
+
 
 
 
