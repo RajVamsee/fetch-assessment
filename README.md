@@ -17,6 +17,10 @@ The application is built using **Python & Flask**, ensuring a robust, scalable, 
 
 ## 🔥 Technologies Used
 
+![Python](https://img.shields.io/badge/python-3.9-blue)
+![Flask](https://img.shields.io/badge/flask-2.0-red)
+![Docker](https://img.shields.io/badge/docker-ready-green)
+
 | Technology   | Purpose |
 |-------------|---------|
 | **Python** | Main programming language |
