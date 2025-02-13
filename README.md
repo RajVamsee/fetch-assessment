@@ -131,6 +131,16 @@ Breakdown:
 
 ## ⚙️ Setup & Installation
 
+🔹 Prerequisites
+Before proceeding, ensure that you have Python 3.9+ installed on your system.
+To check if Python is installed, run: 
+```Python
+python --version
+```
+If Python is not installed, download and install it from the official Python website: 
+👉 Download : https://www.python.org/downloads/
+
+
 ### 1️⃣ **Clone the Repository**
 Run the following command to **clone the project** to your local system:
 ```sh
