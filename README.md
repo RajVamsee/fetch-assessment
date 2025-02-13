@@ -150,10 +150,10 @@ The application should now be accessible at:
 | **500 Internal Server Error** | Server-side error |
 
 ### 9️⃣ **Project Validation**
-- ✔️ Fully implemented API endpoints
-- ✔️ Validations for input data & proper error handling
-- ✔️ Unit-tested API with 16 successful test cases
-- ✔️ Dockerized setup for easy deployment
+✔️ Fully implemented API endpoints  
+✔️ Validations for input data & proper error handling  
+✔️ Unit-tested API with 16 successful test cases  
+✔️ Dockerized setup for easy deployment 
 
 
 
