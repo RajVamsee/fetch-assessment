@@ -55,14 +55,18 @@ These rules collectively define how many points should be awarded to a receipt:
 ---
 
 **💾 Data Persistence**  
-This API **stores receipt data in-memory** and does **not persist data** after the application is stopped. Each time the server restarts, previous receipt submissions will be lost. We use a Python dictionary to store receipt information.
+This API **stores receipt data in-memory** and does **not persist data** after the application is stopped.  
+- We use a Python dictionary to temporarily store receipt details.  
+- Since this is an in-memory solution, restarting the server **removes all stored receipts**.
+- This behavior aligns with Fetch's requirements that **data persistence is not mandatory**.
 
 ---
 
 **📜 API Specification (api.yml)**  
-This repository follows the API specifications outlined in the provided `api.yml` file. The API definitions can be tested using tools like **Swagger UI** or **Postman**.
+This repository follows the API specifications outlined in the provided `api.yml` file in the link below. It defines all endpoints, expected request formats, and response structures. The API definitions can be tested using tools like **Postman**.
 
 - link to the fetch receipt processor exercise : https://github.com/fetch-rewards/receipt-processor-challenge
+- can access the exercise instuctions, api.yml and examples in the above link.
 
 ---
 
@@ -233,12 +237,13 @@ docker stop <container_id>  # Stop the container
 ```
 ### 8️⃣ **Expected Responses & Errors** 
 
-| Status Code | Description                        |
-|------------|------------------------------------|
-| **200 OK** | Successful request                |
-| **400 Bad Request** | Invalid input or missing fields |
-| **404 Not Found** | Receipt ID not found        |
-| **500 Internal Server Error** | Server-side error |
+| Status Code | Description | Possible Causes | Fix |
+|------------|------------------------------------|--------------------------------|------------------------|
+| **200 OK** | Request was successful | ✅ Valid receipt data | No action needed |
+| **400 Bad Request** | Invalid input or missing fields | ❌ Incorrect JSON format or missing required fields | Ensure all required fields are present |
+| **404 Not Found** | Receipt ID not found | ❌ Invalid or non-existent receipt ID used | Check if the correct ID is used |
+
+--- 
 
 ### 9️⃣ **Project Validation**
 ✔️ Fully implemented API endpoints  
