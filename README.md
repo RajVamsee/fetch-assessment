@@ -138,9 +138,9 @@ git clone https://github.com/RajVamsee/fetch-assessment.git
 cd FETCH-ASSESSMENT
 ```
 
-### 2️⃣ **Set Up Virtual Environment (Optional but Recommended)**
+### 2️⃣ **Set Up Virtual Environment (Mandatory for Dependency Management)**
 
-It is recommended to use a virtual environment to manage dependencies.
+A virtual environment (env) is required to isolate dependencies and run the application properly. Without this setup, the application may fail to execute correctly.
 
 #### **For Windows:**
 ```sh
@@ -156,6 +156,10 @@ To deactivate the virtual environment at any time, use:
 ```sh
 deactivate
 ```
+Note: You must activate the virtual environment (env) before running the application or executing any dependency installation commands.
+
+---
+
 ### 3️⃣ **Install dependencies**
 
 Ensure you have Python 3.9+ installed. Then, install the required dependencies using:
