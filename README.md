@@ -192,6 +192,39 @@ pytest test_app.py
 If all test cases pass, you will see an output indicating 16 passed test cases.
 
 ### 6️⃣ **Run the Application using Docker**
+
+#### 🛠 Prerequisites
+Before proceeding, ensure Docker is installed and running on your system.
+
+1️⃣ **Install Docker (if not installed)**
+   - Download Docker Desktop from: https://www.docker.com/products/docker-desktop
+   - Follow the installation steps for your operating system.
+
+2️⃣ **Verify Docker Installation**
+   - Open a terminal (or command prompt) and run:  
+     ```sh
+     docker --version
+     ```
+   - Expected output (Example):  
+     ```sh
+     Docker version 24.0.2, build abc123
+     ```
+   - If Docker is not found, restart your terminal and ensure it is installed correctly.
+
+3️⃣ **Start Docker Desktop**
+   - **Windows & macOS**: Open **Docker Desktop** and wait until it says **"Docker Engine is running"**.  
+   - **Linux**: Run:
+     ```sh
+     sudo systemctl start docker
+     ```
+   - To verify Docker is running, execute:
+     ```sh
+     docker info
+     ```
+   - If Docker is running, you will see system details. Otherwise, start Docker before proceeding.
+
+---
+
 To containerize and run the application using Docker, follow these steps:
 
 Step 1 : Build the Docker Image
