@@ -27,6 +27,7 @@ The application is built using **Python & Flask**, ensuring a robust, scalable, 
 | **Regex** | Validating input formats |
 | **Datetime** | Processing dates and timestamps |
 | **Math** | Rounding and calculations |
+| **Postman** | For API Testing |
 
 ---
 ## 🎯 Rules for Awarding Points
@@ -52,7 +53,12 @@ These rules collectively define how many points should be awarded to a receipt:
 - **env/** → Virtual environment folder.
 
 ---
-
+### 💾 Data Persistence
+This API **stores receipt data in-memory** and does **not persist data** after the application is stopped. Each time the server restarts, previous receipt submissions will be lost. We use a Python dictionary to store receipt information.
+---
+### 📜 API Specification (api.yml)
+This repository follows the API specifications outlined in the provided `api.yml` file. The API definitions can be tested using tools like **Swagger UI** or **Postman**. 
+---
 ## ⚙️ Setup & Installation
 
 ### 1️⃣ **Clone the Repository**
@@ -118,6 +124,13 @@ The application should now be accessible at:
 
 - http://127.0.0.1:5000/
 - http://localhost:5000/
+
+### 🛑 Stopping Docker Container
+To stop the running container, use:
+```sh
+docker ps  # List running containers
+docker stop <container_id>  # Stop the container
+```
 
 ### 7️⃣ **API Endpoints & Usage**
 1️⃣ Process a Receipt
