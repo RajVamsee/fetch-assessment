@@ -29,6 +29,18 @@ The application is built using **Python & Flask**, ensuring a robust, scalable, 
 | **Math** | Rounding and calculations |
 
 ---
+## 🎯 Rules for Awarding Points
+
+These rules collectively define how many points should be awarded to a receipt:
+
+1️⃣ **One point** for every alphanumeric character in the retailer name.  
+2️⃣ **50 points** if the total is a round dollar amount with no cents.  
+3️⃣ **25 points** if the total is a multiple of `0.25`.  
+4️⃣ **5 points** for every two items on the receipt.  
+5️⃣ If the **trimmed length** of the item description is a multiple of 3, **multiply the price by `0.2` and round up** to the nearest integer.  
+6️⃣ **6 points** if the **day in the purchase date is odd**.  
+7️⃣ **10 points** if the **time of purchase is after 2:00 PM and before 4:00 PM**.  
+---
 
 ## 📌 Explanation of Files
 
@@ -155,18 +167,14 @@ The application should now be accessible at:
 ✔️ Unit-tested API with 16 successful test cases  
 ✔️ Dockerized setup for easy deployment 
 
+## 🔗 Conclusion
+This project provides a fully functional **Receipt Processor API**, ensuring a smooth user experience with proper validation, testing, and containerization using Docker.
 
+## 📌 Contact Information
+For any questions or assistance, feel free to contact:
 
-
-
-
-
-
-
-  
-
-
-
-
+- 📧 **Email:** [rajgopalavamsee01@gmail.com](mailto:rajgopalavamsee01@gmail.com)
+- 📞 **Phone:** 3528882788
+- 🌐 **GitHub:** [RajVamsee](https://github.com/RajVamsee)
 
 
