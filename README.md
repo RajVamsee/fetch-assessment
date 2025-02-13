@@ -17,9 +17,10 @@ The application is built using **Python & Flask**, ensuring a robust, scalable, 
 
 ## 🔥 Technologies Used
 
-![Python](https://img.shields.io/badge/python-3.9-blue)
-![Flask](https://img.shields.io/badge/flask-2.0-red)
-![Docker](https://img.shields.io/badge/docker-ready-green)
+![Python](https://img.shields.io/badge/Python-<blank>?style=flat&logo=python)
+![Flask](https://img.shields.io/badge/Flask-<blank>?style=flat&logo=flask)
+![Docker](https://img.shields.io/badge/Docker-<blank>?style=flat&logo=docker)
+![Postman](https://img.shields.io/badge/Postman-<blank>?style=flat&logo=postman)
 
 | Technology   | Purpose |
 |-------------|---------|
