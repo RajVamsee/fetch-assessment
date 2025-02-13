@@ -41,4 +41,13 @@ The application is built using **Python & Flask**, ensuring a robust, scalable, 
 
 ---
 
+## ⚙️ Setup & Installation
+
+### 1️⃣ **Clone the Repository**
+Run the following command to **clone the project** to your local system:
+```sh
+git clone <your-repository-url>
+cd FETCH-ASSESSMENT
+
+
 
