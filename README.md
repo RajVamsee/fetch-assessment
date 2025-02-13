@@ -83,7 +83,7 @@ To test the API using Postman:
    - Use the endpoint: `http://localhost:5000/receipts/{id}/points`
    - Replace `{id}` with a valid receipt ID returned from the previous request.
 
-- Sample JSON API for testing :
+- Sample JSON for testing :
 ```json
 {
   "retailer": "Target",
